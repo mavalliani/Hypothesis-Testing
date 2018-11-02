@@ -1,0 +1,79 @@
+---
+title: "Lab 8"
+author: "Muhammad Ali Valliani NetID jc8469 Section 2"
+date: "November 1, 2018"
+output: html_document
+---
+
+## Exercise 1
+
+```{r}
+# Loading Data
+library(HistData)
+velocity <- Michelson$velocity
+```
+
+```{r}
+test_velocity <- t.test(velocity, mu=734.5)
+test_velocity
+
+```
+
+Description: The Michelson's measurement data differ significantly from the current value.
+
+
+
+## Exercise 2
+
+```{r}
+set.seed(9999)
+pvals <- rep(0, 10000) # initialize vector of p-values
+for(i in 1:10000) {
+  x <- runif(30, min=0, max=1)
+  pvals[i] <- t.test(x,mu = 0.5)$p.value
+}
+sum(pvals <= 0.05)
+sum(pvals <= 0.05) / 10000
+
+```
+
+Description: The proportion created is reasonably close to 0.05 significance level.
+
+
+
+## Exercise 3
+
+```{r}
+set.seed(9999)
+pvals <- rep(0, 10000) # initialize vector of p-values
+for(i in 1:10000) {
+  x <- runif(2, min=0, max=1)
+  pvals[i] <- t.test(x,mu = 0.5)$p.value
+}
+sum(pvals <= 0.05)
+sum(pvals <= 0.05) / 10000
+```
+
+Description : As the sample size is 2 it won't follow CLT.
+
+
+## Exercise 4
+
+Part a
+
+```{r}
+power.t.test(n=35, delta=1.5, sd=3, sig.level=0.05, type="one.sample", alternative="two.sided")
+
+```
+
+Description: Increasing the alpha, decreases the probability of Beta (type 2 error).
+
+
+Part b
+
+```{r}
+power.t.test(power=0.8, delta=1, sd=3, sig.level=0.05, type="one.sample", alternative = "two.sided")
+
+```
+
+Description: Sample size of 73 is required to dtect the difference of 1 volt.
