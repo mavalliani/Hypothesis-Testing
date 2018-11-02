@@ -1,2 +1,4 @@
 # Hypothesis-Testing
-e Michelson data set from the HistData package
+Michelson data set from the HistData package
+p-value test using t-distribution
+
